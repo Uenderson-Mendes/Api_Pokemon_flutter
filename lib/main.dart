@@ -140,6 +140,7 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
 class PokemonsList extends StatelessWidget {
   const PokemonsList({Key? key, required this.pokemons}) : super(key: key);
 
@@ -153,7 +154,7 @@ class PokemonsList extends StatelessWidget {
         itemCount: pokemons.length,
         itemBuilder: (context, index) {
           return SizedBox(
-            height: 200,
+            height: 120,
             child: Card(
               color: Color.fromARGB(255, 203, 202, 202),
               child: Padding(
@@ -169,16 +170,32 @@ class PokemonsList extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Column(
+                    child: Row(
                       children: [
-                        Image.network("${pokemons[index].img}"),
-                        const SizedBox(height: 8),
-                        Text(
-                          "${pokemons[index].name}",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Image.network(
+                          "${pokemons[index].img}",
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                       SizedBox(width: 50,),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                             SizedBox(height: 30, width: 80,),
+                            Text(
+                              "Nome: ${pokemons[index].name}",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "Tipo: ${pokemons[index].type}",
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

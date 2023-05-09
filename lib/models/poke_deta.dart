@@ -17,15 +17,17 @@ class PokemonDetails extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Card(
-            color: Color.fromARGB(255, 142, 138, 138),
-            child: Image.network(
-              pokemon.img!,
-              height: 250,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
+          
+          Center(
+  child: Card(
+    color: Color.fromARGB(255, 142, 138, 138),
+    child: Image.network(
+      pokemon.img!,
+      width: MediaQuery.of(context).size.width * 0.8,
+      fit: BoxFit.cover,
+    ),
+  ),
+),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
