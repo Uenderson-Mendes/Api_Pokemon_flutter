@@ -40,7 +40,7 @@ class Dados {
     this.name,
     this.img,
     this.type,
-    
+    this.weaknesses,
   });
 
   Dados.fromJson(Map<String, dynamic> json) {
@@ -48,7 +48,9 @@ class Dados {
     name = json['name'];
     img = json['img'];
     type = List<String>.from(json['type']
-        .map((x) => x.toString())); // adicionando a propriedade type
+        .map((x) => x.toString())); 
+     weaknesses = List<String>.from(json['weaknesses']
+        .map((x) => x.toString()));// adicionando a propriedade type
   }
 
   Map<String, dynamic> toJson() {
@@ -57,6 +59,7 @@ class Dados {
     data['name'] = this.name;
     data['img'] = this.img;
     data['type'] = this.type;
+    data['weaknesses'] = this.weaknesses;
     return data;
   }
 }
@@ -77,15 +80,15 @@ Future<List<dynamic>> fetchUsers() async {
   return jsonDecode(result.body)['pokemon'];
 }
 
-void main() => runApp(
- DevicePreview(
- enabled: !kReleaseMode,
- builder: (context) => MyApp(), // Wrap your app
-),
- );
-//void main() {
-  //runApp(const MyApp());
-//}
+//void main() => runApp(
+// DevicePreview(
+// enabled: !kReleaseMode,
+//builder: (context) => MyApp(), // Wrap your app
+//),
+// );
+void main() {
+  runApp(const MyApp());
+}
 
 const Color darkBlue = Color.fromARGB(255, 80, 107, 135);
 
@@ -150,25 +153,37 @@ class PokemonsList extends StatelessWidget {
         itemCount: pokemons.length,
         itemBuilder: (context, index) {
           return SizedBox(
-            height: 100,
+            height: 200,
             child: Card(
-              color: Color.fromARGB(255, 161, 154, 154),
+              color: Color.fromARGB(255, 203, 202, 202),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: ListTile(
                   title: GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PokemonDetails(pokemon: pokemons[index]),
+                          builder: (context) =>
+                              PokemonDetails(pokemon: pokemons[index]),
                         ),
                       );
                     },
-                    child: Image.network("${pokemons[index].img}"),
+                    child: Column(
+                      children: [
+                        Image.network("${pokemons[index].img}"),
+                        const SizedBox(height: 8),
+                        Text(
+                          "${pokemons[index].name}",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  subtitle: Text("${pokemons[index].name}"),
-                  trailing: Text("ID: ${pokemons[index].id}"),
+                  // trailing: Text("ID: ${pokemons[index].id}"),
                 ),
               ),
             ),

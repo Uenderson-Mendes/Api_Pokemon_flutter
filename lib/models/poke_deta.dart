@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 
-
 class PokemonDetails extends StatelessWidget {
   const PokemonDetails({Key? key, required this.pokemon}) : super(key: key);
 
@@ -39,7 +38,7 @@ class PokemonDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Text(
-              "Name: ${pokemon.name}",
+              "Nome: ${pokemon.name}",
               style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 0, 0, 0)),
             ),
           ),
@@ -51,6 +50,7 @@ class PokemonDetails extends StatelessWidget {
               style: TextStyle(fontSize: 20, color: Colors.black),
             ),
           ),
+          const SizedBox(height: 8),
           ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -60,6 +60,29 @@ class PokemonDetails extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 16.0),
                 child: Text(
                   "${pokemon.type![index]}",
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Text(
+              "Fraquezas:",
+              style: TextStyle(fontSize: 20, color: Colors.black),
+            ),
+          ),
+          const SizedBox(height: 8),
+          ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: pokemon.weaknesses!.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Text(
+                  "${pokemon.weaknesses![index]}",
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
               );
