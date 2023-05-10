@@ -47,10 +47,9 @@ class Dados {
     id = json['id'];
     name = json['name'];
     img = json['img'];
-    type = List<String>.from(json['type']
-        .map((x) => x.toString())); 
-     weaknesses = List<String>.from(json['weaknesses']
-        .map((x) => x.toString()));// adicionando a propriedade type
+    type = List<String>.from(json['type'].map((x) => x.toString()));
+    weaknesses = List<String>.from(json['weaknesses']
+        .map((x) => x.toString())); // adicionando a propriedade type
   }
 
   Map<String, dynamic> toJson() {
@@ -117,9 +116,10 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 112, 112, 112),
       appBar: AppBar(
         title: Text(title),
-        backgroundColor: Color.fromARGB(255, 18, 36, 54),
+        backgroundColor: Color.fromARGB(255, 42, 77, 90),
       ),
       body: FutureBuilder<List<Dados>>(
         future: dados(),
@@ -149,16 +149,20 @@ class PokemonsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: ListView.builder(
         itemCount: pokemons.length,
         itemBuilder: (context, index) {
+          
           return SizedBox(
-            height: 120,
+            height: 110,
+            
             child: Card(
-              color: Color.fromARGB(255, 203, 202, 202),
+              
+              elevation: 3,
+              color: Color.fromARGB(255, 50, 87, 100),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: ListTile(
                   title: GestureDetector(
                     onTap: () {
@@ -176,16 +180,22 @@ class PokemonsList extends StatelessWidget {
                           "${pokemons[index].img}",
                           width: MediaQuery.of(context).size.width * 0.2,
                         ),
-                       SizedBox(width: 50,),
-                      Column(
+                        SizedBox(
+                          width: 35,
+                        ),
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                             SizedBox(height: 30, width: 80,),
+                            SizedBox(
+                              height: 30,
+                              width: 80,
+                            ),
                             Text(
                               "Nome: ${pokemons[index].name}",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 19,
                                 fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 252, 252, 252),
                               ),
                             ),
                             Text(
@@ -193,6 +203,7 @@ class PokemonsList extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 252, 252, 252),
                               ),
                             ),
                           ],
